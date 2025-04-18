@@ -63,6 +63,7 @@ export function Footer() {
           </p>
         </div>
       </div>
+      {/* Add the gradient border at the bottom (reversed direction) */}
       <div className="h-1 w-full bg-gradient-to-r from-neon-yellow to-neon-green mt-6"></div>
     </footer>
   )

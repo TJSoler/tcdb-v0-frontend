@@ -32,11 +32,12 @@ export function Navigation() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-black text-white py-4 transition-all duration-200 ${
-        isScrolled ? "shadow-md" : ""
-      }`}
+      className={`sticky top-0 z-50 bg-black text-white transition-all duration-200 ${isScrolled ? "shadow-md" : ""}`}
     >
-      <div className="container mx-auto px-4">
+      {/* Add the gradient border at the top */}
+      <div className="h-1 w-full bg-gradient-to-r from-neon-green to-neon-yellow"></div>
+
+      <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link
             href="/"
@@ -106,7 +107,7 @@ export function Navigation() {
   )
 }
 
-// Desktop navigation link component
+// Desktop navigation link component with updated hover state
 function NavLink({
   href,
   isActive,
@@ -124,8 +125,8 @@ function NavLink({
     <Link
       href={href}
       className={`
-        relative px-4 py-2 font-bold transition-colors rounded hover:bg-gray-800
-        ${isActive ? "text-neon-green" : "text-white hover:text-neon-green"}
+        relative px-4 py-2 font-bold transition-colors rounded
+        ${isActive ? "text-neon-green" : "text-white hover:bg-neon-green hover:text-black"}
         ${iconOnly ? "md:px-3" : ""}
         group
       `}
@@ -158,7 +159,7 @@ function MobileNavLink({
       href={href}
       className={`
         block py-3 px-2 font-bold transition-colors border-b border-gray-700 last:border-b-0
-        ${isActive ? "text-neon-green" : "text-white"}
+        ${isActive ? "text-neon-green" : "text-white hover:bg-neon-green hover:text-black"}
       `}
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}

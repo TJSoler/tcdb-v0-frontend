@@ -256,7 +256,8 @@ export default function CreatorCreditsPage({ params }: { params: { slug: string 
               ))}
             </div>
             <div className="mb-6">
-              <div className="h-1 w-full bg-gradient-to-r from-neon-green to-black mb-4"></div>
+              {/* Change gradient from neon-green to black to neon-green to neon-yellow */}
+              <div className="h-1 w-full bg-gradient-to-r from-neon-green to-neon-yellow mb-4"></div>
               <p className="text-lg leading-relaxed">{creator.bio}</p>
             </div>
           </div>

@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body className={`${inter.className} flex flex-col min-h-screen bg-gray-50`}>
-        <div className="h-1 w-full bg-gradient-to-r from-neon-green to-neon-yellow"></div>
+        {/* Remove the border from here */}
         <Navigation />
 
         <main className="flex-grow">{children}</main>

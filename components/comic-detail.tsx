@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
 import { Star, Heart, Share2, BookOpen } from "lucide-react"
 
 interface Credit {
@@ -30,6 +29,9 @@ interface Comic {
 }
 
 export function ComicDetail({ comic }: { comic: Comic }) {
+  // Extract series name from title (for demo purposes)
+  const seriesName = comic.title.split("#")[0]?.trim() || comic.title
+
   return (
     <div className="space-y-8">
       <div>
@@ -39,12 +41,13 @@ export function ComicDetail({ comic }: { comic: Comic }) {
 
       <div className="flex flex-wrap gap-3">
         {comic.genre.map((genre) => (
-          <Badge
+          <Link
             key={genre}
+            href={`/search?tag=${encodeURIComponent(genre)}`}
             className="bg-neon-green text-black rounded-none px-3 py-1 text-sm font-bold hover:bg-black hover:text-neon-green transition-colors cursor-pointer"
           >
             {genre}
-          </Badge>
+          </Link>
         ))}
       </div>
 
@@ -68,8 +71,22 @@ export function ComicDetail({ comic }: { comic: Comic }) {
             </h3>
             <ul className="space-y-3">
               <li className="flex">
+                <span className="font-bold w-28">Series:</span>
+                <Link
+                  href={`/series/${encodeURIComponent(seriesName.toLowerCase().replace(/\s+/g, "-"))}`}
+                  className="flex-1 hover:text-neon-green transition-colors"
+                >
+                  {seriesName}
+                </Link>
+              </li>
+              <li className="flex">
                 <span className="font-bold w-28">Publisher:</span>
-                <span className="flex-1">{comic.publisher}</span>
+                <Link
+                  href={`/publishers/${encodeURIComponent(comic.publisher.toLowerCase().replace(/\s+/g, "-"))}`}
+                  className="flex-1 hover:text-neon-green transition-colors"
+                >
+                  {comic.publisher}
+                </Link>
               </li>
               <li className="flex">
                 <span className="font-bold w-28">Release Date:</span>

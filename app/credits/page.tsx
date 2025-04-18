@@ -84,7 +84,7 @@ export default function CreditsPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {creators.map((creator) => (
             <Link key={creator.id} href={`/credits/${creator.slug}`} className="group">
-              <div className="border-2 border-black bg-white transition-all duration-200 group-hover:border-neon-green group-hover:shadow-card group-hover:translate-y-[-2px]">
+              <div className="border-2 border-black bg-white transition-all duration-200 group-hover:border-neon-green group-hover:shadow-card group-hover:translate-y-[-2px] h-full flex flex-col">
                 <div className="relative w-full aspect-square">
                   <Image
                     src={creator.photo || "/placeholder.svg"}
@@ -95,7 +95,7 @@ export default function CreditsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="p-4">
+                <div className="p-4 flex-grow flex flex-col">
                   <h3 className="font-bold text-lg group-hover:text-neon-green transition-colors">{creator.name}</h3>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {creator.roles.map((role) => (
