@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Calendar, MapPin, Globe, ExternalLink } from "lucide-react"
 import { CreditsTabs } from "@/components/credits/credits-tabs"
 import { AwardsSection } from "@/components/credits/awards-section"
 import { CareerTimeline } from "@/components/credits/career-timeline"
@@ -149,101 +149,131 @@ export default function CreatorCreditsPage({ params }: { params: { slug: string 
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Link href="/credits" className="flex items-center gap-2 mb-6 font-bold hover:text-neon-green transition-colors">
-        <ArrowLeft size={20} />
+      {/* Breadcrumb navigation */}
+      <nav className="breadcrumb mb-6" aria-label="Breadcrumb">
+        <ol className="flex flex-wrap items-center">
+          <li className="breadcrumb-item">
+            <Link href="/">Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link href="/credits">Credits</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {creator.name}
+          </li>
+        </ol>
+      </nav>
+
+      <Link
+        href="/credits"
+        className="inline-flex items-center gap-2 mb-6 font-bold hover:text-neon-green transition-colors group"
+      >
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
         Back to credits
       </Link>
 
       {/* Creator Hero Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         <div className="md:col-span-1">
-          <div className="border-4 border-black relative w-full aspect-square">
-            <div className="absolute inset-0 border-4 border-neon-green opacity-75"></div>
-            <Image
-              src={creator.photo || "/placeholder.svg"}
-              alt={creator.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
-              priority
-            />
+          <div className="sticky top-24">
+            <div className="border-4 border-black relative w-full aspect-square shadow-elevated">
+              <div className="absolute inset-0 border-4 border-neon-green opacity-75"></div>
+              <Image
+                src={creator.photo || "/placeholder.svg"}
+                alt={creator.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                priority
+              />
+            </div>
+
+            <div className="mt-6 space-y-4">
+              <div className="flex items-center p-3 border-2 border-black bg-white">
+                <Calendar size={20} className="mr-3 text-neon-green flex-shrink-0" />
+                <div>
+                  <span className="text-sm text-gray-600">Born</span>
+                  <p className="font-bold">{creator.born}</p>
+                </div>
+              </div>
+              <div className="flex items-center p-3 border-2 border-black bg-white">
+                <MapPin size={20} className="mr-3 text-neon-green flex-shrink-0" />
+                <div>
+                  <span className="text-sm text-gray-600">Nationality</span>
+                  <p className="font-bold">{creator.nationality}</p>
+                </div>
+              </div>
+              <div className="flex items-center p-3 border-2 border-black bg-white">
+                <Globe size={20} className="mr-3 text-neon-green flex-shrink-0" />
+                <div>
+                  <span className="text-sm text-gray-600">Active Since</span>
+                  <p className="font-bold">{creator.activeSince}</p>
+                </div>
+              </div>
+              {creator.website && (
+                <a
+                  href={creator.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-3 border-2 border-black bg-white hover:border-neon-green transition-colors"
+                >
+                  <ExternalLink size={20} className="mr-3 text-neon-green flex-shrink-0" />
+                  <div>
+                    <span className="text-sm text-gray-600">Website</span>
+                    <p className="font-bold text-neon-green">{creator.website.replace(/^https?:\/\//, "")}</p>
+                  </div>
+                </a>
+              )}
+            </div>
+
+            <div className="mt-6">
+              <h3 className="text-lg font-bold border-b-2 border-black mb-4 pb-1">SOCIAL</h3>
+              <div className="flex flex-wrap gap-3">
+                {creator.social.map((social) => (
+                  <a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 min-w-[120px] border-2 border-black p-3 text-center font-bold hover:bg-black hover:text-neon-green hover:border-neon-green transition-colors"
+                  >
+                    {social.platform.toUpperCase()}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="md:col-span-2">
-          <h1 className="text-4xl font-black mb-2">{creator.name.toUpperCase()}</h1>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {creator.roles.map((role) => (
-              <span key={role} className="bg-neon-green text-black px-2 py-1 text-sm font-bold">
-                {role.toUpperCase()}
-              </span>
-            ))}
-          </div>
-          <div className="mb-6">
-            <div className="h-1 w-full bg-gradient-to-r from-neon-green to-black mb-4"></div>
-            <p className="text-lg leading-relaxed">{creator.bio}</p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <h3 className="text-lg font-bold border-b-2 border-black mb-2 pb-1">DETAILS</h3>
-              <ul className="space-y-2">
-                <li>
-                  <span className="font-bold">Born:</span> {creator.born}
-                </li>
-                <li>
-                  <span className="font-bold">Nationality:</span> {creator.nationality}
-                </li>
-                <li>
-                  <span className="font-bold">Active Since:</span> {creator.activeSince}
-                </li>
-              </ul>
+          <div className="bg-white border-2 border-black p-6 shadow-card mb-8">
+            <h1 className="text-4xl font-black mb-3">{creator.name.toUpperCase()}</h1>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {creator.roles.map((role) => (
+                <span key={role} className="bg-neon-green text-black px-3 py-1 text-sm font-bold">
+                  {role.toUpperCase()}
+                </span>
+              ))}
             </div>
-            <div>
-              <h3 className="text-lg font-bold border-b-2 border-black mb-2 pb-1">CONTACT</h3>
-              <ul className="space-y-2">
-                {creator.website && (
-                  <li>
-                    <span className="font-bold">Website:</span>{" "}
-                    <a
-                      href={creator.website}
-                      className="text-neon-green hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {creator.website.replace(/^https?:\/\//, "")}
-                    </a>
-                  </li>
-                )}
-                {creator.social.map((social) => (
-                  <li key={social.platform}>
-                    <span className="font-bold">{social.platform}:</span>{" "}
-                    <a
-                      href={social.url}
-                      className="text-neon-green hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {social.handle}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <div className="mb-6">
+              <div className="h-1 w-full bg-gradient-to-r from-neon-green to-black mb-4"></div>
+              <p className="text-lg leading-relaxed">{creator.bio}</p>
             </div>
           </div>
+
+          {/* Work Gallery */}
+          <WorkGallery images={galleryImages} />
+
+          {/* Career Timeline */}
+          <CareerTimeline events={timelineEvents} />
+
+          {/* Awards Section */}
+          <AwardsSection awards={awards} />
+
+          {/* Credits Tabs Section */}
+          <CreditsTabs creator={creator} />
         </div>
       </div>
-
-      {/* Work Gallery */}
-      <WorkGallery images={galleryImages} />
-
-      {/* Career Timeline */}
-      <CareerTimeline events={timelineEvents} />
-
-      {/* Awards Section */}
-      <AwardsSection awards={awards} />
-
-      {/* Credits Tabs Section */}
-      <CreditsTabs creator={creator} />
     </div>
   )
 }

@@ -4,15 +4,25 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-rgb: 245, 245, 245;
+  --background-rgb: 249, 250, 251; /* Lighter background */
+
+  /* Design system variables */
+  --radius: 0.25rem;
+  --transition-standard: 0.2s ease;
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.12);
+  --shadow-elevated: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Brutalist styling */
+/* Brutalist styling with refinements */
 h1,
 h2,
 h3,
@@ -21,16 +31,65 @@ h5,
 h6 {
   font-family: system-ui, -apple-system, sans-serif;
   letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 button,
 select,
 input {
   font-family: system-ui, -apple-system, sans-serif;
+  transition: all var(--transition-standard);
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+/* Enhanced focus states for accessibility */
+:focus-visible {
+  outline: 2px solid #39ff14;
+  outline-offset: 2px;
+}
+
+/* Improved button styles */
+button,
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::after,
+.button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+button:hover::after,
+.button:hover::after {
+  opacity: 1;
+}
+
+button:active::after,
+.button:active::after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced card styles */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -42,6 +101,37 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* Enhanced form controls */
+input,
+select,
+textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #39ff14;
+  box-shadow: 0 0 0 3px rgba(57, 255, 20, 0.2);
+}
+
+/* Micro-interactions */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-bright {
+  transition: filter 0.2s ease;
+}
+
+.hover-bright:hover {
+  filter: brightness(1.05);
 }
 
 /* Print styles */
@@ -100,6 +190,50 @@ body {
   a[href^="javascript:"]:after {
     content: "";
   }
+}
+
+/* Utility classes for spacing and layout */
+.section-spacing {
+  margin-bottom: 2.5rem;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Breadcrumb styles */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  content: "/";
+  margin: 0 0.5rem;
+  color: #9ca3af;
+}
+
+.breadcrumb-item a {
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: #39ff14;
+}
+
+.breadcrumb-item.active {
+  color: #111827;
+  font-weight: 500;
 }
 
 @layer utilities {
