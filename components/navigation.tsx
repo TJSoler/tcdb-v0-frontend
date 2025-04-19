@@ -4,16 +4,29 @@ import type React from "react"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Search, Home, BookOpen, Users, Info } from "lucide-react"
+import { Menu, X, Search, Home, BookOpen, Users, Info, User, LogIn, ChevronDown, LogOut, Settings } from "lucide-react"
 import { useState, useEffect } from "react"
 
 export function Navigation() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  // Add state for user dropdown menu
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  // Mock logged in state - in a real app this would come from auth context
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen)
+  }
+
+  // Toggle login state for demo purposes
+  const toggleLoggedIn = () => {
+    setIsLoggedIn(!isLoggedIn)
   }
 
   const isActive = (path: string) => {
@@ -76,6 +89,74 @@ export function Navigation() {
             <NavLink href="/search" isActive={isActive("/search")} icon={<Search size={18} />} iconOnly>
               SEARCH
             </NavLink>
+
+            {/* Add login/user profile button */}
+            {isLoggedIn ? (
+              <div className="relative">
+                <button
+                  onClick={toggleUserMenu}
+                  className="flex items-center gap-2 px-4 py-2 font-bold hover:text-neon-green transition-colors"
+                  aria-expanded={isUserMenuOpen}
+                >
+                  <User size={18} />
+                  <span className="hidden lg:inline">COMICFAN42</span>
+                  <ChevronDown size={16} className={`transition-transform ${isUserMenuOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {/* User dropdown menu */}
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-black shadow-lg z-50 animate-fade-in">
+                    <div className="py-1">
+                      <Link
+                        href="/profile"
+                        className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          <span>Profile</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/profile/collections"
+                        className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <BookOpen size={16} />
+                          <span>Collections</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/profile/security"
+                        className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Settings size={16} />
+                          <span>Settings</span>
+                        </div>
+                      </Link>
+                      <div className="border-t border-gray-200 my-1"></div>
+                      <button
+                        onClick={toggleLoggedIn}
+                        className="block w-full text-left px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <LogOut size={16} />
+                          <span>Log Out</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={toggleLoggedIn}
+                className="flex items-center gap-2 px-4 py-2 font-bold bg-neon-green text-black hover:bg-white hover:text-black transition-colors rounded"
+              >
+                <LogIn size={18} />
+                <span>LOG IN</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -100,6 +181,48 @@ export function Navigation() {
             <MobileNavLink href="/search" isActive={isActive("/search")} onClick={() => setIsMenuOpen(false)}>
               SEARCH
             </MobileNavLink>
+
+            {/* Add login/profile link for mobile */}
+            {isLoggedIn ? (
+              <>
+                <MobileNavLink href="/profile" isActive={isActive("/profile")} onClick={() => setIsMenuOpen(false)}>
+                  PROFILE
+                </MobileNavLink>
+                <MobileNavLink
+                  href="/profile/collections"
+                  isActive={isActive("/profile/collections")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  COLLECTIONS
+                </MobileNavLink>
+                <MobileNavLink
+                  href="/profile/security"
+                  isActive={isActive("/profile/security")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  SETTINGS
+                </MobileNavLink>
+                <button
+                  onClick={() => {
+                    toggleLoggedIn()
+                    setIsMenuOpen(false)
+                  }}
+                  className="block w-full text-left py-3 px-2 font-bold transition-colors border-b border-gray-700 text-white hover:bg-neon-green hover:text-black"
+                >
+                  LOG OUT
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  toggleLoggedIn()
+                  setIsMenuOpen(false)
+                }}
+                className="block w-full text-left py-3 px-2 font-bold transition-colors border-b border-gray-700 bg-neon-green text-black hover:bg-white"
+              >
+                LOG IN
+              </button>
+            )}
           </div>
         )}
       </div>
