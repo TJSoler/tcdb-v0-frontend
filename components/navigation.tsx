@@ -4,7 +4,21 @@ import type React from "react"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Search, Home, BookOpen, Users, Info, User, LogIn, ChevronDown, LogOut, Settings } from "lucide-react"
+import {
+  Menu,
+  X,
+  Search,
+  BookOpen,
+  Users,
+  Info,
+  User,
+  LogIn,
+  ChevronDown,
+  LogOut,
+  Settings,
+  Compass,
+  Building2,
+} from "lucide-react"
 import { useState, useEffect } from "react"
 
 export function Navigation() {
@@ -15,6 +29,7 @@ export function Navigation() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   // Mock logged in state - in a real app this would come from auth context
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isContentMenuOpen, setIsContentMenuOpen] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -71,18 +86,71 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            <NavLink href="/" isActive={isActive("/")} icon={<Home size={18} />}>
-              HOME
-            </NavLink>
-            <NavLink href="/listings" isActive={isActive("/listings")} icon={<BookOpen size={18} />}>
-              NEW COMICS
-            </NavLink>
-            <NavLink href="/discover" isActive={isActive("/discover")}>
-              DISCOVER
-            </NavLink>
-            <NavLink href="/credits" isActive={isActive("/credits")} icon={<Users size={18} />}>
-              CREDITS
-            </NavLink>
+            <div className="relative group">
+              <button
+                className={`flex items-center gap-2 px-4 py-2 font-bold hover:text-neon-green transition-colors ${
+                  isActive("/listings") || isActive("/discover") || isActive("/credits") || isActive("/publishers")
+                    ? "text-neon-green"
+                    : "text-white"
+                }`}
+                onClick={() => setIsContentMenuOpen(!isContentMenuOpen)}
+                onMouseEnter={() => setIsContentMenuOpen(true)}
+                onMouseLeave={() => setIsContentMenuOpen(false)}
+                aria-expanded={isContentMenuOpen}
+              >
+                COMICS
+                <ChevronDown size={16} className={`transition-transform ${isContentMenuOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {/* Content dropdown menu */}
+              {isContentMenuOpen && (
+                <div
+                  className="absolute left-0 mt-2 w-48 bg-white border-2 border-black shadow-lg z-50 animate-fade-in"
+                  onMouseEnter={() => setIsContentMenuOpen(true)}
+                  onMouseLeave={() => setIsContentMenuOpen(false)}
+                >
+                  <div className="py-1">
+                    <Link
+                      href="/listings"
+                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <BookOpen size={16} />
+                        <span>New Comics</span>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/discover"
+                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Compass size={16} />
+                        <span>Discover</span>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/credits"
+                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Users size={16} />
+                        <span>Credits</span>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/publishers"
+                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Building2 size={16} />
+                        <span>Publishers</span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <NavLink href="/about" isActive={isActive("/about")} icon={<Info size={18} />}>
               ABOUT
             </NavLink>
@@ -163,9 +231,6 @@ export function Navigation() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 space-y-0 border-t border-gray-700 pt-4 animate-fade-in">
-            <MobileNavLink href="/" isActive={isActive("/")} onClick={() => setIsMenuOpen(false)}>
-              HOME
-            </MobileNavLink>
             <MobileNavLink href="/listings" isActive={isActive("/listings")} onClick={() => setIsMenuOpen(false)}>
               NEW COMICS
             </MobileNavLink>
@@ -174,6 +239,9 @@ export function Navigation() {
             </MobileNavLink>
             <MobileNavLink href="/credits" isActive={isActive("/credits")} onClick={() => setIsMenuOpen(false)}>
               CREDITS
+            </MobileNavLink>
+            <MobileNavLink href="/publishers" isActive={isActive("/publishers")} onClick={() => setIsMenuOpen(false)}>
+              PUBLISHERS
             </MobileNavLink>
             <MobileNavLink href="/about" isActive={isActive("/about")} onClick={() => setIsMenuOpen(false)}>
               ABOUT
