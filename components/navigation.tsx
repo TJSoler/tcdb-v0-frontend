@@ -20,6 +20,7 @@ import {
   Building2,
 } from "lucide-react"
 import { useState, useEffect } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navigation() {
   const pathname = usePathname()
@@ -75,14 +76,17 @@ export function Navigation() {
           </Link>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white p-2 hover:text-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green focus:ring-opacity-50 transition-colors"
-            onClick={toggleMenu}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              className="text-white p-2 hover:text-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green focus:ring-opacity-50 transition-colors"
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
@@ -105,14 +109,14 @@ export function Navigation() {
               {/* Content dropdown menu */}
               {isContentMenuOpen && (
                 <div
-                  className="absolute left-0 mt-2 w-48 bg-white border-2 border-black shadow-lg z-50 animate-fade-in"
+                  className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 border-2 border-black dark:border-gray-600 shadow-lg z-50 animate-fade-in"
                   onMouseEnter={() => setIsContentMenuOpen(true)}
                   onMouseLeave={() => setIsContentMenuOpen(false)}
                 >
                   <div className="py-1">
                     <Link
                       href="/listings"
-                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                     >
                       <div className="flex items-center gap-2">
                         <BookOpen size={16} />
@@ -121,7 +125,7 @@ export function Navigation() {
                     </Link>
                     <Link
                       href="/discover"
-                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                     >
                       <div className="flex items-center gap-2">
                         <Compass size={16} />
@@ -130,7 +134,7 @@ export function Navigation() {
                     </Link>
                     <Link
                       href="/credits"
-                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                     >
                       <div className="flex items-center gap-2">
                         <Users size={16} />
@@ -139,7 +143,7 @@ export function Navigation() {
                     </Link>
                     <Link
                       href="/publishers"
-                      className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                      className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                     >
                       <div className="flex items-center gap-2">
                         <Building2 size={16} />
@@ -158,6 +162,8 @@ export function Navigation() {
               SEARCH
             </NavLink>
 
+            <ThemeToggle className="mx-2" />
+
             {/* Add login/user profile button */}
             {isLoggedIn ? (
               <div className="relative">
@@ -173,11 +179,11 @@ export function Navigation() {
 
                 {/* User dropdown menu */}
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-black shadow-lg z-50 animate-fade-in">
+                  <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border-2 border-black dark:border-gray-600 shadow-lg z-50 animate-fade-in">
                     <div className="py-1">
                       <Link
                         href="/profile"
-                        className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                        className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                       >
                         <div className="flex items-center gap-2">
                           <User size={16} />
@@ -186,7 +192,7 @@ export function Navigation() {
                       </Link>
                       <Link
                         href="/profile/collections"
-                        className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                        className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                       >
                         <div className="flex items-center gap-2">
                           <BookOpen size={16} />
@@ -195,17 +201,17 @@ export function Navigation() {
                       </Link>
                       <Link
                         href="/profile/security"
-                        className="block px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                        className="block px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                       >
                         <div className="flex items-center gap-2">
                           <Settings size={16} />
                           <span>Settings</span>
                         </div>
                       </Link>
-                      <div className="border-t border-gray-200 my-1"></div>
+                      <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
                       <button
                         onClick={toggleLoggedIn}
-                        className="block w-full text-left px-4 py-2 text-black hover:bg-neon-green hover:text-black font-bold transition-colors"
+                        className="block w-full text-left px-4 py-2 text-black dark:text-white hover:bg-neon-green hover:text-black font-bold transition-colors"
                       >
                         <div className="flex items-center gap-2">
                           <LogOut size={16} />

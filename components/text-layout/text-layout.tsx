@@ -66,11 +66,11 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
 
   return (
     <div className={cn("max-w-4xl mx-auto px-4 py-8", className)}>
-      <div className="mb-8 border-b-2 border-black pb-4">
+      <div className="mb-8 border-b-2 border-black dark:border-gray-700 pb-4">
         <h1 className="text-4xl font-black mb-4">{title}</h1>
 
         <div className="flex justify-between items-center">
-          <p className="text-sm text-gray-600">Last updated: {new Date().toLocaleDateString()}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Last updated: {new Date().toLocaleDateString()}</p>
 
           <div className="flex items-center gap-4">
             <PrintButton />
@@ -87,7 +87,7 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
         </div>
 
         {showControls && (
-          <div className="mt-4 p-4 border-2 border-black bg-white">
+          <div className="mt-4 p-4 border-2 border-black dark:border-black bg-white dark:bg-gray-800">
             <div className="flex flex-col sm:flex-row gap-6">
               <div className="flex-1">
                 <h3 className="font-bold mb-2">Font Size</h3>
@@ -95,12 +95,12 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
                   <button
                     onClick={decreaseFontSize}
                     disabled={fontSize === 0}
-                    className="p-2 border-2 border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 border-2 border-black dark:border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Decrease font size"
                   >
                     <Minus size={16} />
                   </button>
-                  <div className="flex-1 h-2 bg-gray-200 relative">
+                  <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 relative">
                     <div
                       className="absolute top-0 left-0 h-2 bg-neon-green"
                       style={{ width: `${(fontSize / (fontSizeClasses.length - 1)) * 100}%` }}
@@ -109,7 +109,7 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
                   <button
                     onClick={increaseFontSize}
                     disabled={fontSize === fontSizeClasses.length - 1}
-                    className="p-2 border-2 border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 border-2 border-black dark:border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Increase font size"
                   >
                     <Plus size={16} />
@@ -123,12 +123,12 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
                   <button
                     onClick={decreaseLineSpacing}
                     disabled={lineSpacing === 0}
-                    className="p-2 border-2 border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 border-2 border-black dark:border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Decrease line spacing"
                   >
                     <Minus size={16} />
                   </button>
-                  <div className="flex-1 h-2 bg-gray-200 relative">
+                  <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 relative">
                     <div
                       className="absolute top-0 left-0 h-2 bg-neon-green"
                       style={{ width: `${(lineSpacing / (lineSpacingClasses.length - 1)) * 100}%` }}
@@ -137,7 +137,7 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
                   <button
                     onClick={increaseLineSpacing}
                     disabled={lineSpacing === lineSpacingClasses.length - 1}
-                    className="p-2 border-2 border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 border-2 border-black dark:border-black hover:border-neon-green disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Increase line spacing"
                   >
                     <Plus size={16} />
@@ -149,7 +149,13 @@ export function TextLayout({ title, children, className }: TextLayoutProps) {
         )}
       </div>
 
-      <div className={cn("prose prose-black max-w-none", fontSizeClasses[fontSize], lineSpacingClasses[lineSpacing])}>
+      <div
+        className={cn(
+          "prose prose-black dark:prose-invert max-w-none",
+          fontSizeClasses[fontSize],
+          lineSpacingClasses[lineSpacing],
+        )}
+      >
         {children}
       </div>
     </div>

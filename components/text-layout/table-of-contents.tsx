@@ -43,7 +43,7 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
   }, [items])
 
   return (
-    <div className={cn("border-2 border-black bg-white mb-6", className)}>
+    <div className={cn("border-2 border-black dark:border-black bg-white dark:bg-gray-800 mb-6", className)}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-4 font-bold bg-black text-white"

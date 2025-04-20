@@ -62,7 +62,7 @@ export default function HomePage() {
       </section>
 
       {/* Popular Releases Section */}
-      <section className="bg-gray-100 py-12 mb-16">
+      <section className="bg-gray-100 dark:bg-gray-900 py-12 mb-16">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-black flex items-center">

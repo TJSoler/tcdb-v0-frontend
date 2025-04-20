@@ -48,9 +48,9 @@ export function SearchBar({ defaultValue = "" }: { defaultValue?: string }) {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className={`
-          flex-grow border-2 ${isFocused ? "border-neon-green" : "border-black"} border-r-0 p-3 
+          flex-grow border-2 ${isFocused ? "border-neon-green" : "border-black dark:border-black"} border-r-0 p-3 
           focus:outline-none transition-colors duration-200
-          placeholder:text-gray-500
+          placeholder:text-gray-500 dark:bg-black dark:text-white dark:placeholder:text-gray-400
         `}
         aria-label="Search comics"
       />

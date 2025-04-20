@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Key, Link2, Shield, Bell } from "lucide-react"
+import { ArrowLeft, Key, Link2, Shield, Bell, Palette } from "lucide-react"
 
 export default function SecuritySettingsPage() {
   return (
@@ -13,19 +13,21 @@ export default function SecuritySettingsPage() {
           Back to profile
         </Link>
 
-        <div className="bg-white border-2 border-black p-6 mb-8">
-          <h1 className="text-2xl font-black mb-6 border-b-2 border-black pb-2">Security Settings</h1>
+        <div className="bg-white dark:bg-gray-800 border-2 border-black dark:border-gray-700 p-6 mb-8">
+          <h1 className="text-2xl font-black mb-6 border-b-2 border-black dark:border-gray-700 pb-2">
+            Security Settings
+          </h1>
 
           <div className="space-y-8">
             {/* Password Section */}
-            <div className="border-2 border-black p-4">
+            <div className="border-2 border-black dark:border-gray-700 p-4">
               <div className="flex items-center gap-4 mb-4">
                 <div className="bg-neon-green p-3 rounded-full">
                   <Key size={24} className="text-black" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold">Password</h2>
-                  <p className="text-gray-600">Manage your account password</p>
+                  <p className="text-gray-600 dark:text-gray-400">Manage your account password</p>
                 </div>
               </div>
               <div className="pl-14">
@@ -35,7 +37,7 @@ export default function SecuritySettingsPage() {
                 </p>
                 <Link
                   href="/profile/security/password"
-                  className="border-2 border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
+                  className="border-2 border-black dark:border-gray-700 px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
                 >
                   Change Password
                 </Link>
@@ -43,14 +45,14 @@ export default function SecuritySettingsPage() {
             </div>
 
             {/* Connected Accounts Section */}
-            <div className="border-2 border-black p-4">
+            <div className="border-2 border-black dark:border-gray-700 p-4">
               <div className="flex items-center gap-4 mb-4">
                 <div className="bg-neon-green p-3 rounded-full">
                   <Link2 size={24} className="text-black" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold">Connected Accounts</h2>
-                  <p className="text-gray-600">Manage your connected social accounts</p>
+                  <p className="text-gray-600 dark:text-gray-400">Manage your connected social accounts</p>
                 </div>
               </div>
               <div className="pl-14">
@@ -60,22 +62,46 @@ export default function SecuritySettingsPage() {
                 </p>
                 <Link
                   href="/profile/security/connected-accounts"
-                  className="border-2 border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
+                  className="border-2 border-black dark:border-gray-700 px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
                 >
                   Manage Connected Accounts
                 </Link>
               </div>
             </div>
 
+            {/* Appearance Section */}
+            <div className="border-2 border-black dark:border-gray-700 p-4">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="bg-neon-green p-3 rounded-full">
+                  <Palette size={24} className="text-black" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">Appearance</h2>
+                  <p className="text-gray-600 dark:text-gray-400">Customize the look and feel of the site</p>
+                </div>
+              </div>
+              <div className="pl-14">
+                <p className="mb-4">
+                  Change theme preferences, accent colors, and font sizes to personalize your experience.
+                </p>
+                <Link
+                  href="/profile/appearance"
+                  className="border-2 border-black dark:border-gray-700 px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
+                >
+                  Appearance Settings
+                </Link>
+              </div>
+            </div>
+
             {/* Account Activity Section */}
-            <div className="border-2 border-black p-4">
+            <div className="border-2 border-black dark:border-gray-700 p-4">
               <div className="flex items-center gap-4 mb-4">
                 <div className="bg-neon-green p-3 rounded-full">
                   <Shield size={24} className="text-black" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold">Account Activity</h2>
-                  <p className="text-gray-600">Review your recent account activity</p>
+                  <p className="text-gray-600 dark:text-gray-400">Review your recent account activity</p>
                 </div>
               </div>
               <div className="pl-14">
@@ -84,7 +110,7 @@ export default function SecuritySettingsPage() {
                 </p>
                 <Link
                   href="/profile/security/activity"
-                  className="border-2 border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
+                  className="border-2 border-black dark:border-gray-700 px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors inline-block"
                 >
                   View Account Activity
                 </Link>
@@ -92,14 +118,14 @@ export default function SecuritySettingsPage() {
             </div>
 
             {/* Notification Settings Section */}
-            <div className="border-2 border-black p-4">
+            <div className="border-2 border-black dark:border-gray-700 p-4">
               <div className="flex items-center gap-4 mb-4">
                 <div className="bg-neon-green p-3 rounded-full">
                   <Bell size={24} className="text-black" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold">Security Notifications</h2>
-                  <p className="text-gray-600">Manage your security notification preferences</p>
+                  <p className="text-gray-600 dark:text-gray-400">Manage your security notification preferences</p>
                 </div>
               </div>
               <div className="pl-14">
@@ -109,7 +135,7 @@ export default function SecuritySettingsPage() {
                       id="login-alerts"
                       name="login-alerts"
                       type="checkbox"
-                      className="h-4 w-4 border-2 border-black focus:ring-neon-green"
+                      className="h-4 w-4 border-2 border-black dark:border-gray-700 focus:ring-neon-green"
                       defaultChecked
                     />
                     <label htmlFor="login-alerts" className="ml-2 block">
@@ -121,7 +147,7 @@ export default function SecuritySettingsPage() {
                       id="password-change"
                       name="password-change"
                       type="checkbox"
-                      className="h-4 w-4 border-2 border-black focus:ring-neon-green"
+                      className="h-4 w-4 border-2 border-black dark:border-gray-700 focus:ring-neon-green"
                       defaultChecked
                     />
                     <label htmlFor="password-change" className="ml-2 block">
@@ -133,7 +159,7 @@ export default function SecuritySettingsPage() {
                       id="security-updates"
                       name="security-updates"
                       type="checkbox"
-                      className="h-4 w-4 border-2 border-black focus:ring-neon-green"
+                      className="h-4 w-4 border-2 border-black dark:border-gray-700 focus:ring-neon-green"
                       defaultChecked
                     />
                     <label htmlFor="security-updates" className="ml-2 block">

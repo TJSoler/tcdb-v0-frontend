@@ -15,7 +15,7 @@ export function CareerTimeline({ events }: CareerTimelineProps) {
       <div className="relative border-l-4 border-black pl-8 ml-4">
         {events.map((event, index) => (
           <div key={index} className="mb-8 relative">
-            <div className="absolute -left-12 w-8 h-8 bg-neon-green border-4 border-black flex items-center justify-center font-bold">
+            <div className="absolute -left-12 w-8 h-8 bg-neon-green border-4 border-black flex items-center justify-center font-bold text-black">
               {index + 1}
             </div>
             <div className="border-2 border-black bg-white p-4">

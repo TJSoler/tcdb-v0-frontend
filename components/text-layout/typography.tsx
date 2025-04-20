@@ -9,7 +9,10 @@ interface HeadingProps {
 
 export function H1({ children, className, id }: HeadingProps) {
   return (
-    <h1 id={id} className={cn("text-3xl font-black mt-8 mb-4 border-b-2 border-black pb-2", className)}>
+    <h1
+      id={id}
+      className={cn("text-3xl font-black mt-8 mb-4 border-b-2 border-black dark:border-gray-700 pb-2", className)}
+    >
       {children}
     </h1>
   )
@@ -78,7 +81,7 @@ export function Blockquote({ children, className, citation }: BlockquoteProps) {
   return (
     <blockquote className={cn("border-l-4 border-neon-green pl-4 py-2 my-4 italic", className)}>
       {children}
-      {citation && <cite className="block text-sm mt-2 not-italic">— {citation}</cite>}
+      {citation && <cite className="block text-sm mt-2 not-italic dark:text-gray-300">— {citation}</cite>}
     </blockquote>
   )
 }

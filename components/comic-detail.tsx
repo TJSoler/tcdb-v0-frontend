@@ -44,7 +44,7 @@ export function ComicDetail({ comic }: { comic: Comic }) {
           <Link
             key={genre}
             href={`/search?tag=${encodeURIComponent(genre)}`}
-            className="bg-neon-green text-black rounded-none px-3 py-1 text-sm font-bold hover:bg-black hover:text-neon-green transition-colors cursor-pointer"
+            className="bg-neon-green text-black rounded-none px-3 py-1 text-sm font-bold hover:bg-black hover:text-neon-green dark:hover:bg-gray-900 transition-colors cursor-pointer"
           >
             {genre}
           </Link>
@@ -52,13 +52,13 @@ export function ComicDetail({ comic }: { comic: Comic }) {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <button className="flex items-center gap-2 bg-black text-neon-green px-4 py-2 font-bold hover:bg-neon-green hover:text-black transition-colors">
+        <button className="flex items-center gap-2 bg-black dark:bg-black text-neon-green px-4 py-2 font-bold hover:bg-neon-green hover:text-black transition-colors">
           <Heart size={18} /> ADD TO COLLECTION
         </button>
-        <button className="flex items-center gap-2 border-2 border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors">
+        <button className="flex items-center gap-2 border-2 border-black dark:border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors">
           <BookOpen size={18} /> READ PREVIEW
         </button>
-        <button className="flex items-center gap-2 border-2 border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors">
+        <button className="flex items-center gap-2 border-2 border-black dark:border-black px-4 py-2 font-bold hover:border-neon-green hover:text-neon-green transition-colors">
           <Share2 size={18} /> SHARE
         </button>
       </div>

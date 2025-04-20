@@ -60,7 +60,7 @@ export function FilterSidebar() {
   }
 
   return (
-    <div className="border-2 border-black p-4 bg-white shadow-subtle">
+    <div className="border-2 border-black dark:border-black p-4 bg-white dark:bg-gray-900 shadow-subtle">
       <div className="flex justify-between items-center mb-4 border-b-2 border-black pb-2">
         <h2 className="text-xl font-bold flex items-center">
           <Filter size={18} className="mr-2" /> FILTERS
@@ -140,7 +140,7 @@ export function FilterSidebar() {
             ${
               totalActiveFilters > 0
                 ? "bg-black text-neon-green border-2 border-neon-green hover:bg-neon-green hover:text-black"
-                : "bg-gray-200 text-gray-500 border-2 border-gray-300 cursor-not-allowed"
+                : "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-2 border-gray-300 dark:border-gray-600 cursor-not-allowed"
             }
             transition-colors
           `}
@@ -150,7 +150,7 @@ export function FilterSidebar() {
         </button>
         <button
           className={`
-            w-full border-2 border-black font-bold py-2.5 px-4 hover:border-neon-green 
+            w-full border-2 border-black dark:border-black font-bold py-2.5 px-4 hover:border-neon-green 
             hover:text-neon-green transition-colors
             ${totalActiveFilters === 0 ? "opacity-50 cursor-not-allowed" : ""}
           `}
@@ -176,11 +176,11 @@ interface FilterSectionProps {
 
 function FilterSection({ title, value, isExpanded, onToggle, items, activeItems, onToggleItem }: FilterSectionProps) {
   return (
-    <div className="border-2 border-black">
+    <div className="border-2 border-black dark:border-black">
       <button
         className={`
           w-full text-left font-bold py-3 px-4 flex justify-between items-center
-          ${isExpanded ? "bg-black text-neon-green" : "bg-white hover:text-neon-green"}
+          ${isExpanded ? "bg-black text-neon-green" : "bg-white dark:bg-gray-900 hover:text-neon-green"}
           transition-colors
         `}
         onClick={onToggle}
@@ -213,7 +213,7 @@ function FilterSection({ title, value, isExpanded, onToggle, items, activeItems,
       </button>
 
       {isExpanded && (
-        <div className="p-4 space-y-2 bg-gray-50 border-t-2 border-black">
+        <div className="p-4 space-y-2 bg-gray-50 dark:bg-gray-800 border-t-2 border-black dark:border-black">
           {items.map((item) => (
             <div key={item} className="flex items-center space-x-2">
               <Checkbox

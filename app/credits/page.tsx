@@ -73,9 +73,12 @@ export default function CreditsPage() {
           <input
             type="text"
             placeholder="Search creators..."
-            className="w-full border-2 border-black p-3 pl-12 focus:outline-none focus:border-neon-green transition-colors"
+            className="w-full border-2 border-black dark:border-black p-3 pl-12 focus:outline-none focus:border-neon-green transition-colors dark:bg-black dark:text-white dark:placeholder:text-gray-400"
           />
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
+          <Search
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+            size={20}
+          />
         </div>
       </div>
 
@@ -84,7 +87,7 @@ export default function CreditsPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {creators.map((creator) => (
             <Link key={creator.id} href={`/credits/${creator.slug}`} className="group">
-              <div className="border-2 border-black bg-white transition-all duration-200 group-hover:border-neon-green group-hover:shadow-card group-hover:translate-y-[-2px] h-full flex flex-col">
+              <div className="border-2 border-black dark:border-black bg-white dark:bg-gray-800 transition-all duration-200 group-hover:border-neon-green group-hover:shadow-card group-hover:translate-y-[-2px] h-full flex flex-col">
                 <div className="relative w-full aspect-square">
                   <Image
                     src={creator.photo || "/placeholder.svg"}
@@ -99,7 +102,10 @@ export default function CreditsPage() {
                   <h3 className="font-bold text-lg group-hover:text-neon-green transition-colors">{creator.name}</h3>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {creator.roles.map((role) => (
-                      <span key={role} className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">
+                      <span
+                        key={role}
+                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-black text-xs px-2 py-1 rounded"
+                      >
                         {role}
                       </span>
                     ))}
@@ -113,7 +119,7 @@ export default function CreditsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Writers */}
-        <div className="border-2 border-black p-6 bg-white shadow-subtle">
+        <div className="border-2 border-black dark:border-black p-6 bg-white dark:bg-gray-800 shadow-subtle">
           <h2 className="text-2xl font-bold mb-4 border-b-2 border-black pb-2">WRITERS</h2>
           <ul className="space-y-2">
             {[
@@ -141,7 +147,7 @@ export default function CreditsPage() {
         </div>
 
         {/* Artists */}
-        <div className="border-2 border-black p-6 bg-white shadow-subtle">
+        <div className="border-2 border-black dark:border-black p-6 bg-white dark:bg-gray-800 shadow-subtle">
           <h2 className="text-2xl font-bold mb-4 border-b-2 border-black pb-2">ARTISTS</h2>
           <ul className="space-y-2">
             {["Ryan Ottley", "Mark Bagley", "Gurihiru", "Werther Dell'Edera", "Sana Takeda", "Riley Rossmo"].map(
@@ -164,7 +170,7 @@ export default function CreditsPage() {
         </div>
 
         {/* Publishers */}
-        <div className="border-2 border-black p-6 bg-white shadow-subtle">
+        <div className="border-2 border-black dark:border-black p-6 bg-white dark:bg-gray-800 shadow-subtle">
           <h2 className="text-2xl font-bold mb-4 border-b-2 border-black pb-2">PUBLISHERS</h2>
           <ul className="space-y-2">
             {["Marvel", "DC Comics", "Image Comics", "BOOM! Studios", "Viz Media", "Dark Horse"].map((publisher) => (
