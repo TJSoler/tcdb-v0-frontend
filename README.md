@@ -1,0 +1,1 @@
+> **Moved.** This project now lives in the monorepo at `projects/tcdb-v0-frontend` (`ssh://git@100.88.199.84:2222/srv/git/tj/mono.git`, checkout `~/dev/mono`). This repository is frozen as of 097171e443bf; do not commit here.
